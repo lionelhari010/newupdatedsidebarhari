@@ -1,0 +1,71 @@
+.input-text {
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(2.5em + 2.2px);
+  margin: 0 0 1em;
+  padding: 6px;
+  border: 1px solid #bababa;
+  border-radius: 3px;
+  background: #fff;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+  color: gray;
+  border-radius: 10px;
+  /* border: 2px solid orange; */
+}
+.input-text:focus {
+  border-color: gary;
+}
+.input-text:focus + label[placeholder]:before {
+  color: gray;
+}
+
+.input-text:focus + label[placeholder]:before,
+.input-text:valid + label[placeholder]:before {
+  transition-duration: 0.2s;
+  transform: translate(0, -1.6em) scale(0.9, 0.9);
+  font-weight: bold;
+}
+
+.input-text + label[placeholder] {
+  display: block;
+  pointer-events: none;
+  line-height: 1.25em;
+  margin-top: calc(-3em - 2px);
+  margin-bottom: calc((3em - 1em) + 2px);
+}
+
+.input-text + label[placeholder]:before {
+  content: attr(placeholder);
+  display: inline-block;
+  margin: 0 calc(0.5em + 2px);
+  padding: 0 2px;
+  color: #7d7d7d;
+  white-space: nowrap;
+  transition: 0.3s ease-in-out;
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.input-fields-container {
+  width: 300px;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.select-box {
+  height: calc(2.5em + 2.2px);
+  box-sizing: border-box;
+  height: calc(2.5em + 2.2px);
+  margin: 0 0 1em;
+  padding: 6px;
+  border: 1px solid #bababa;
+  border-radius: 3px;
+  background: #fff;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+  color: gray;
+  border-radius: 10px;
+}

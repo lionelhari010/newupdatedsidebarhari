@@ -1,0 +1,21 @@
+.fa-bars {
+  margin-top: 14px;
+}
+.footer-version {
+  background-color: #e3e3e3;
+}
+.product-version {
+  margin-top: 11px;
+  background-color: #636363;
+  padding: 5px;
+  height: 42px;
+  margin-top: 0px;
+  margin-left: -8px;
+  padding-top: 10px;
+  color: #e3e3e3;
+  font-weight: bold;
+}
+.card-container {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border: 1px solid red;
+}

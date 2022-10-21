@@ -1,0 +1,27 @@
+.dropcard {
+  width: 30%;
+}
+.main_container {
+  flex: 1;
+  height: 95vh;
+  background-color: lightgray;
+}
+.browse_container {
+  display: flex;
+}
+.heads {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 10px;
+  border-bottom: 2px solid lightgray;
+}
+.accordion_body {
+  padding: 5px 5px 5px 0;
+  font-size: 13px;
+}
+.displayFilterCard {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
