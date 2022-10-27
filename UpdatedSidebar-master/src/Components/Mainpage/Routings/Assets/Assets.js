@@ -3,9 +3,8 @@ import { MdNotifications } from "react-icons/md";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { BsSliders } from "react-icons/bs";
 import AssetMainPage from "./AssetDetails/AssetMainPage/AssetMainPage";
-import AssetBrowse from "./AssetDetails/BrowsePage/AssetBrowse";
-import AssetSearch from "./AssetDetails/SearchPage/AssetSearch";
-
+import AssetBrowse from "./AssetDetails/Browse/AssetBrowse";
+import AssetSearch from "./AssetDetails/Search/AssetSearch";
 import "./assets.css";
 
 const Assets = () => {

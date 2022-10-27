@@ -1,0 +1,23 @@
+.dropcard {
+  width: 30%;
+}
+.main_container {
+  flex: 1;
+  height: 95vh;
+  background-color: lightgray;
+}
+.browse_container {
+  display: flex;
+}
+.displayFilterCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.top-section-asset-icon {
+  margin-left: 25px;
+  font-size: 25px;
+}
+.containers {
+  background-color: whitesmoke;
+}

@@ -1,6 +1,8 @@
 import React from "react";
 import AssetCard from "./AssetCard";
 
+import { Outlet } from "react-router-dom";
+
 import "./AssetMainPage.css";
 
 export const DUMMY_DATA = [
@@ -119,13 +121,13 @@ export const DUMMY_DATA = [
     pics: "https://res.cloudinary.com/duwkxxbeh/image/upload/v1665568432/prod2_z1sbza.jpg",
   },
 ];
-
 const AssetMainPage = () => {
   return (
     <div className="d-flex flex-wrap p-1 ">
       {DUMMY_DATA.map((eachUser, index) => (
         <AssetCard eachUser={eachUser} key={index} />
       ))}
+      <Outlet />
     </div>
   );
 };

@@ -1,0 +1,15 @@
+.labels {
+  color: #7e8289;
+  font-size: 14px;
+}
+.checkboxs {
+  accent-color: #7d6ce2;
+}
+.acccordBtn {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+}
+.accordTitle {
+  padding-left: 5px;
+}

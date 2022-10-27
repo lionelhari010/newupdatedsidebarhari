@@ -4,9 +4,6 @@ const AssetCard = (props) => {
   const { eachUser } = props;
 
   const { pics, pname, uid, uname } = eachUser;
-  //  console.log(pics, pname, uid, uname);
-
-  //
 
   return (
     <div className="d-flex flex-column">

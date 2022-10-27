@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 // import { FaBars } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
-
+import { NavLink, Link } from "react-router-dom";
 import { FaImage } from "react-icons/fa";
 
 import { BiListCheck } from "react-icons/bi";
@@ -16,22 +15,34 @@ import { RiInboxArchiveFill } from "react-icons/ri";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { FaAngleRight } from "@react-icons/all-files/fa/FaAngleRight";
 import { BiTable } from "@react-icons/all-files/bi/BiTable";
+import { FaUserShield } from "react-icons/fa";
+import "./Sidebar.css";
+import {
+  MDBDropdown,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
+  MDBDropdownItem,
+  MDBBtn,
+} from "mdb-react-ui-kit";
+import AssetSearch from "../Routings/Assets/AssetDetails/Search/AssetSearch";
+import AssetBrowse from "../Routings/Assets/AssetDetails/Browse/AssetBrowse";
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
   const [showNav, setShowNav] = useState(false);
   const [showNavIcon, setShowNavIcon] = useState(false);
-
+  const toggle = () => setIsOpen(!isOpen);
   const routeHandler = () => {
     if (showNav == true) {
-      return showNav(false);
+      return setShowNav(false);
     }
     setShowNav(true);
   };
   const routeArrowHandler = () => {
-    setShowNavIcon(true);
+    setShowNavIcon(!showNavIcon);
   };
-
+  const toggleLinkIcon = () => {
+    setShowNav(false);
+  };
   const menuItem = [
     {
       path: "/",
@@ -101,37 +112,117 @@ const Sidebar = ({ children }) => {
             </div>
           )}
         </div>
-        {menuItem.map((item, index) => (
-          <NavLink end to={item.path} key={index} className="link">
-            <div className="icon">{item.icon}</div>
+        {menuItem.map((item, index) => {
+          if (
+            item.path === "/pack-copy" ||
+            item.path === "/specifications" ||
+            item.path === "/reporting"
+          ) {
+            return (
+              <NavLink end to={item.path} key={index} className="link">
+                <div className="icon">{item.icon}</div>
+                <div
+                  style={{
+                    display: isOpen ? "block" : "none",
+                    pointerEvents: "none",
+                  }}
+                  className="link_text"
+                >
+                  {item.name}
+                </div>
+              </NavLink>
+            );
+          }
+          // if (item.path === "/assets") {
+          //   return (
+          //     <NavLink end to={item.path} key={index} className="link">
+          //       <MDBDropdown dropright group className="shadow-0 assetDropdown">
+          //         <div className="icon">{item.icon}</div>
+          //         <MDBBtn
+          //           color="link"
+          //           style={{ display: isOpen ? "block" : "none" }}
+          //           className="link_text"
+          //         >
+          //           Assets
+          //         </MDBBtn>
+          //         <MDBDropdownToggle color="link" />
+          //         <MDBDropdownMenu>
+          //           <MDBDropdownItem link>Action</MDBDropdownItem>
+          //           <MDBDropdownItem link>Another action</MDBDropdownItem>
+          //           <MDBDropdownItem link>Something else here</MDBDropdownItem>
+          //           <MDBDropdownItem divider />
+          //           <MDBDropdownItem link>Separated link</MDBDropdownItem>
+          //         </MDBDropdownMenu>
+          //       </MDBDropdown>
+          //     </NavLink>
+          //   );
+          // }
+
+          return (
+            <NavLink
+              end
+              to={item.path}
+              key={index}
+              className="link"
+              onClick={routeArrowHandler}
+            >
+              <div className="icon">{item.icon}</div>
+              <div
+                style={{ display: isOpen ? "block" : "none" }}
+                className="link_text"
+              >
+                {item.name}
+              </div>
+
+              {showNavIcon && item.path === "/assets" && (
+                <FaAngleRight
+                  className="nav-icon-open"
+                  onClick={routeHandler}
+                />
+              )}
+
+              {showNav && item.path === "/assets" && (
+                <div className="dropdown-content">
+                  <Link
+                    to="/Assets/Search"
+                    element={<AssetSearch />}
+                    onClick={toggleLinkIcon}
+                    className="linkname"
+                  >
+                    <BiTable />
+                    <span>Search</span>
+                  </Link>
+                  <Link
+                    to="/Assets/Browse"
+                    element={<AssetBrowse />}
+                    onClick={toggleLinkIcon}
+                    className="linkname"
+                  >
+                    <BiTable />
+                    <span>Browse</span>
+                  </Link>
+                </div>
+              )}
+            </NavLink>
+          );
+        })}
+        <hr />
+        <div>
+          <NavLink to="/admin" className="link">
+            <div className="icon">
+              <FaUserShield />
+            </div>
             <div
               style={{ display: isOpen ? "block" : "none" }}
               className="link_text"
             >
-              {item.name}
+              Admin
             </div>
           </NavLink>
-        ))}
-
-        {/* <Link onClick={routeArrowHandler} />
-        {showNavIcon && (
-          <FaAngleRight className="nav-icon-open" onClick={routeHandler} />
-        )}
-
-        {showNav && (
-          <div className="dropdown-content">
-            <Link to="/Assets/Search">
-              <BiTable />
-              Search
-            </Link>
-            <Link to="/Assets/Browse">
-              <BiTable />
-              Browse
-            </Link>
-          </div>
-        )} */}
+        </div>
       </div>
       <main>{children}</main>
+      <hr />
     </div>
   );
 };
