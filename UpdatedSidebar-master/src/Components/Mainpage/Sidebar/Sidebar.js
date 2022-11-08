@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { FaBars } from "react-icons/fa";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { FaImage } from "react-icons/fa";
 
 import { BiListCheck } from "react-icons/bi";
@@ -17,32 +17,32 @@ import { FaAngleRight } from "@react-icons/all-files/fa/FaAngleRight";
 import { BiTable } from "@react-icons/all-files/bi/BiTable";
 import { FaUserShield } from "react-icons/fa";
 import "./Sidebar.css";
-import {
-  MDBDropdown,
-  MDBDropdownMenu,
-  MDBDropdownToggle,
-  MDBDropdownItem,
-  MDBBtn,
-} from "mdb-react-ui-kit";
+
 import AssetSearch from "../Routings/Assets/AssetDetails/Search/AssetSearch";
 import AssetBrowse from "../Routings/Assets/AssetDetails/Browse/AssetBrowse";
 const Sidebar = ({ children }) => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [showNavIcon, setShowNavIcon] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const routeHandler = () => {
-    if (showNav == true) {
-      return setShowNav(false);
-    }
     setShowNav(true);
   };
   const routeArrowHandler = () => {
-    setShowNavIcon(!showNavIcon);
+    if (showNav == true) {
+      return setShowNav(false);
+    }
+    if (location.pathname === "/assets") {
+      setShowNavIcon(true);
+    } else {
+      setShowNavIcon(false);
+    }
   };
   const toggleLinkIcon = () => {
     setShowNav(false);
   };
+
   const menuItem = [
     {
       path: "/",
@@ -119,7 +119,13 @@ const Sidebar = ({ children }) => {
             item.path === "/reporting"
           ) {
             return (
-              <NavLink end to={item.path} key={index} className="link">
+              <NavLink
+                end
+                to={item.path}
+                key={index}
+                className="link"
+                onClick={routeArrowHandler}
+              >
                 <div className="icon">{item.icon}</div>
                 <div
                   style={{
@@ -174,35 +180,39 @@ const Sidebar = ({ children }) => {
                 {item.name}
               </div>
 
-              {showNavIcon && item.path === "/assets" && (
-                <FaAngleRight
-                  className="nav-icon-open"
-                  onClick={routeHandler}
-                />
-              )}
+              {showNavIcon &&
+                item.path === "/assets" &&
+                location.pathname === "/assets" && (
+                  <FaAngleRight
+                    className="nav-icon-open"
+                    onClick={routeHandler}
+                  />
+                )}
 
-              {showNav && item.path === "/assets" && (
-                <div className="dropdown-content">
-                  <Link
-                    to="/Assets/Search"
-                    element={<AssetSearch />}
-                    onClick={toggleLinkIcon}
-                    className="linkname"
-                  >
-                    <BiTable />
-                    <span>Search</span>
-                  </Link>
-                  <Link
-                    to="/Assets/Browse"
-                    element={<AssetBrowse />}
-                    onClick={toggleLinkIcon}
-                    className="linkname"
-                  >
-                    <BiTable />
-                    <span>Browse</span>
-                  </Link>
-                </div>
-              )}
+              {showNav &&
+                item.path === "/assets" &&
+                location.pathname === "/assets" && (
+                  <div className="dropdown-content">
+                    <Link
+                      to="/Assets/Search"
+                      element={<AssetSearch />}
+                      onClick={toggleLinkIcon}
+                      className="linkname"
+                    >
+                      <BiTable />
+                      <span>Search</span>
+                    </Link>
+                    <Link
+                      to="/Assets/Browse"
+                      element={<AssetBrowse />}
+                      onClick={toggleLinkIcon}
+                      className="linkname"
+                    >
+                      <BiTable />
+                      <span>Browse</span>
+                    </Link>
+                  </div>
+                )}
             </NavLink>
           );
         })}

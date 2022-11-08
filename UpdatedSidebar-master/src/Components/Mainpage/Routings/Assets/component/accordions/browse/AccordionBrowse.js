@@ -1,5 +1,4 @@
 import React from "react";
-import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
 import { AiFillFolderOpen } from "@react-icons/all-files/ai/AiFillFolderOpen";
 import "./accordBrowse.css";
 const AccordionBrowse = (props) => {
